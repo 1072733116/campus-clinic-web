@@ -5,6 +5,26 @@
  */
 import request from '@/service';
 
+//获取预约列表
+const getAppointmentListRequest = (pageParam: any, appointment: any, doctorId?: number) => {
+  return request.post({
+    url: '/appointment/list',
+    data: appointment,
+    params: {
+      ...pageParam,
+      doctorId
+    }
+  });
+};
+
+//添加就诊记录
+const createRecordRequest = (record) => {
+  return request.post({
+    url:"/record",
+    data:record
+  })
+}
+
 //修改密码
 const updateDoctorPassword = (account: any) => {
   return request.put({
@@ -37,8 +57,10 @@ const updateDoctorInfoStatusRequest = (status: any) => {
   });
 };
 export {
+  getAppointmentListRequest,
   updateDoctorPassword,
   updateDoctorInfo,
   updateClinicStatusRequest,
-  updateDoctorInfoStatusRequest
+  updateDoctorInfoStatusRequest,
+  createRecordRequest
 };

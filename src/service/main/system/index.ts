@@ -17,7 +17,14 @@ const getAlLRoleListRequest = () => {
   });
 };
 
+const getAllMedicineListRequest = () => {
+  return request.get({
+    url:"/medicine"
+  })
+}
+
 export {
   getAllResourceRequest,
-  getAlLRoleListRequest
+  getAlLRoleListRequest,
+  getAllMedicineListRequest
 };

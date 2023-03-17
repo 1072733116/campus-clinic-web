@@ -61,7 +61,7 @@ const maoMenuListToDefaultActivePath = (path: string, menuList: IUserMenu[]): an
       if (menu.children && menu.children[0].type !== 0) {
         recurseGetActivePath(menu.children);
       } else {
-        if (menu.url === path) {
+        if (menu.url === path || path.indexOf(menu.url) !== -1) {
           activeMenuItem = menu;
           break;
         }
@@ -115,7 +115,7 @@ const mapPathToBreadcrumbs = (path: string, userMenuList: IUserMenu[]): IBreadcr
         breadcrumbs.push(breadcrumb);
         recurseGetBreadcrumbs(menu.children, menu);
       } else {
-        if (menu.url === path) {
+        if (menu.url === path || path.indexOf(menu.url) !== -1) {
           const breadcrumb = {
             id: menu.id,
             name: menu.name,

@@ -11,8 +11,14 @@ export default {
   path: HOME_URL,
   name: 'home',
   component: home,
-  children: [],
   meta: {
     isFixed: true
-  }
+  },
+  children: [
+    {
+      path:"/main/home/visit/:appointmentId",
+      name:"visit",
+      component: () => import("@/views/main/home/c-cpns/page-visit.vue")
+    }
+  ]
 };

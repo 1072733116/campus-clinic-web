@@ -49,9 +49,12 @@ onMounted(() => {
 
 watch(() => route.path, () => {
   activeTabItem.value = route.path;
+  if (activeTabItem.value.includes("/main/home/visit")){
+    activeTabItem.value = "/main/home";
+  }
   const tabItem: ITabItem = {
     name: route.name as string,
-    path: route.path,
+    path: activeTabItem.value,
     title: route.meta.title as string,
     close: !route.meta.isFixed,
     icon: route.meta.icon as string

@@ -6,7 +6,9 @@
 interface ISystemState {
   resourceList: any[],
   roleList: any[],
+  medicineList:any[]
 }
+
 
 export type{
   ISystemState
