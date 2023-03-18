@@ -10,7 +10,8 @@ import {
   updateDoctorInfo,
   updateClinicStatusRequest,
   updateDoctorInfoStatusRequest,
-  createRecordRequest
+  createRecordRequest,
+  sendMailRequest
 } from '@/service/main/home';
 import type { IHomeState } from './type';
 import { localCache } from '@/utils/cache';
@@ -40,7 +41,13 @@ const useHomeStore = defineStore('home', {
       async createRecordAction(record:any){
         const res = await createRecordRequest(record)
         if (!res.data){
-          Promise.reject(res.msg)
+          return Promise.reject()
+        }
+      },
+      async sendMailAction(appointment){
+        const res = await sendMailRequest(appointment)
+        if (!res.data){
+         return Promise.reject()
         }
       },
       async updateDoctorPasswordAction(account: any) {

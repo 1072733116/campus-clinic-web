@@ -20,10 +20,18 @@ const getAppointmentListRequest = (pageParam: any, appointment: any, doctorId?: 
 //添加就诊记录
 const createRecordRequest = (record) => {
   return request.post({
-    url:"/record",
-    data:record
-  })
-}
+    url: '/record',
+    data: record
+  });
+};
+
+//发送通知邮件
+const sendMailRequest = (appointment) => {
+  return request.post({
+    url: '/mail',
+    data: appointment
+  });
+};
 
 //修改密码
 const updateDoctorPassword = (account: any) => {
@@ -62,5 +70,6 @@ export {
   updateDoctorInfo,
   updateClinicStatusRequest,
   updateDoctorInfoStatusRequest,
-  createRecordRequest
+  createRecordRequest,
+  sendMailRequest
 };

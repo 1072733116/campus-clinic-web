@@ -57,12 +57,13 @@
 
 <script setup lang='ts'>
 import { ref, computed, watch } from 'vue';
-import { useRouter,useRoute } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import useLoginStore from '@/store/login';
 import useHomeStore from '@/store/main/home';
+import { ElMessage } from 'element-plus';
 
-const route = useRoute()
+const route = useRoute();
 const router = useRouter();
 const tagType = computed(() => {
   return (t) => {
@@ -78,7 +79,7 @@ const tagType = computed(() => {
   };
 });
 
-const emit = defineEmits(['createEvent', 'updateEvent', 'createOrUpdateEvent','goVisitEvent']);
+const emit = defineEmits(['createEvent', 'updateEvent', 'createOrUpdateEvent', 'goVisitEvent']);
 const homeStore = useHomeStore();
 const loginStore = useLoginStore();
 const { total, appointmentList } = storeToRefs(homeStore);
@@ -111,11 +112,24 @@ fetchAppointmentListAction();
 
 //点击通知
 const handleNoticeClick = (event, row?: any) => {
-  // emit('createOrUpdateEvent', row);
+  ElMessage({
+    message: '已发送通知',
+    type: 'success',
+    duration: 1000
+  });
+  homeStore.sendMailAction(row).then(() => {
+    ElMessage({
+      message: '通知成功',
+      type: 'success',
+      duration: 1000
+    });
+  }).catch((err) => {
+    // ElMessage.error(err);
+  });
 };
 //点击就诊按钮
 const handleVisitClick = (e, row: any) => {
-  emit('goVisitEvent',row)
+  emit('goVisitEvent', row);
 };
 
 defineExpose({
