@@ -46,7 +46,6 @@ const deleteMedicineByIdRequest = (id: number) => {
   });
 };
 
-
 export {
   getMedicineListRequest,
   getMedicineTypeListRequest,

@@ -10,5 +10,5 @@ export default {
   name: 'medicine',
   component: medicine,
   children: [],
-  meta:{}
+  meta: {}
 };

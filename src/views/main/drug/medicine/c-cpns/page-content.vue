@@ -1,54 +1,59 @@
 <template>
-  <div class='page-content card'>
+  <div class="page-content card">
     <!-- 表格头部 -->
-    <div class='table-header'>
-      <h3 class='title'>药品列表</h3>
-      <div class='operations'>
-        <el-button type='primary' @click='handleCreateOrUpdateMedicineClick'>新建药品</el-button>
+    <div class="table-header">
+      <h3 class="title">药品列表</h3>
+      <div class="operations">
+        <el-button type="primary" @click="handleCreateOrUpdateMedicineClick">新建药品</el-button>
         <el-button>批墙添加药品</el-button>
       </div>
     </div>
-    <div class='table'>
-      <el-table :data='medicineList' border style='width: 100%'>
-        <el-table-column type='index' label='序号' width='60' align='center' />
-        <el-table-column prop='brand' label='品牌' width='110' align='center' />
-        <el-table-column prop='name' label='名字' width='170' align='center' />
-        <el-table-column prop='specs' label='规格' width='120' align='center' />
-        <el-table-column prop='type' label='类型' width='100' align='center' />
-        <el-table-column prop='suit' label='适用人群' width='120' align='center' />
-        <el-table-column prop='price' label='价格' width='100' align='center' />
-        <el-table-column prop='stock' label='库存' width='80' align='center' />
-        <el-table-column prop='description' label='描述' align='center' />
-        <el-table-column label='操作' align='center' width='160'>
-          <template #default='{row}'>
-            <el-button size='small' icon='Edit' text type='primary'
-                       @click='handleCreateOrUpdateMedicineClick($event,row)'>编辑
+    <div class="table">
+      <el-table :data="medicineList" border style="width: 100%">
+        <el-table-column type="index" label="序号" width="60" align="center" />
+        <el-table-column prop="brand" label="品牌" width="110" align="center" />
+        <el-table-column prop="name" label="名字" width="170" align="center" />
+        <el-table-column prop="specs" label="规格" width="120" align="center" />
+        <el-table-column prop="type" label="类型" width="100" align="center" />
+        <el-table-column prop="suit" label="适用人群" width="120" align="center" />
+        <el-table-column prop="price" label="价格" width="100" align="center" />
+        <el-table-column prop="stock" label="库存" width="80" align="center" />
+        <el-table-column prop="description" label="描述" align="center" />
+        <el-table-column label="操作" align="center" width="160">
+          <template #default="{ row }">
+            <el-button
+              size="small"
+              icon="Edit"
+              text
+              type="primary"
+              @click="handleCreateOrUpdateMedicineClick($event, row)"
+              >编辑
             </el-button>
-            <el-popconfirm title='确认删除?' @confirm='handleDeleteConfirmClick($event,row)'>
+            <el-popconfirm title="确认删除?" @confirm="handleDeleteConfirmClick($event, row)">
               <template #reference>
-                <el-button type='danger' :icon='Delete' text size='small'>删除</el-button>
+                <el-button type="danger" :icon="Delete" text size="small">删除</el-button>
               </template>
             </el-popconfirm>
           </template>
         </el-table-column>
       </el-table>
     </div>
-    <div class='pagination'>
+    <div class="pagination">
       <el-pagination
-        v-model:current-page='currentPage'
-        v-model:page-size='pageSize'
-        :page-sizes='[5, 8, 10]'
-        :background='true'
-        layout='total, sizes, prev, pager, next, jumper'
-        :total='total'
-        @size-change='handleSizeChange'
-        @current-change='handleCurrentChange'
+        v-model:current-page="currentPage"
+        v-model:page-size="pageSize"
+        :page-sizes="[5, 8, 10]"
+        :background="true"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
       />
     </div>
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { Delete, Edit } from '@element-plus/icons-vue';
 import { ref, reactive } from 'vue';
 import { storeToRefs } from 'pinia';
@@ -98,7 +103,7 @@ defineExpose({
 });
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .table-header {
   display: flex;
   justify-content: space-between;

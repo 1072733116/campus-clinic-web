@@ -17,7 +17,6 @@ import { LOGIN_USER_TOKEN, LOGIN_USER_INFO, LOGIN_USER_MENU_LIST, LOGIN_CLINIC_S
 import type { ILoginUser } from '@/types';
 import type { ILoginState } from './type';
 
-
 const useLoginStore = defineStore('login', {
   state: (): ILoginState => ({
     token: localCache.getCache(LOGIN_USER_TOKEN) ?? '',
@@ -51,7 +50,6 @@ const useLoginStore = defineStore('login', {
       //获取用户的权限
       const permissions = mapMenuToPermissions(this.userMenuList);
       this.userPermissions = permissions;
-
       const routes = mapMenuListToRoutes(this.userMenuList);
       routes.forEach((route) => router.addRoute('main', route));
     },
@@ -60,7 +58,6 @@ const useLoginStore = defineStore('login', {
       const loginUserInfo = localCache.getCache(LOGIN_USER_INFO);
       const userMenuList = localCache.getCache(LOGIN_USER_MENU_LIST);
       if (token && loginUserInfo && userMenuList) {
-
         this.token = token;
         this.loginUserInfo = loginUserInfo;
         this.userMenuList = userMenuList;

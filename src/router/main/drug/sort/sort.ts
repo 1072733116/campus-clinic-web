@@ -10,5 +10,5 @@ export default {
   name: 'sort',
   component: sort,
   children: [],
-  meta:{}
+  meta: {}
 };

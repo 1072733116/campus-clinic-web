@@ -59,7 +59,7 @@ const contentConfig = {
     },
     {
       prop: 'dcNumber',
-      label: '医生工号',
+      label: '医生工号'
     },
     {
       prop: 'dcName',
@@ -72,23 +72,23 @@ const contentConfig = {
     {
       prop: 'reMedicinal',
       label: '就诊药物',
-      width: "85"
+      width: '85'
     },
     {
       prop: 'reFee',
       label: '价格',
-      width: "65"
+      width: '65'
     },
     {
       prop: 'discountFee',
       label: '费用',
-      width: "65"
+      width: '65'
     },
     {
       type: 'handle',
       label: '操作',
       width: '90',
-      fixed: "right"
+      fixed: 'right'
     }
   ]
 };

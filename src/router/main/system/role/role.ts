@@ -9,5 +9,5 @@ export default {
   name: 'role',
   component: role,
   children: [],
-  meta:{}
+  meta: {}
 };

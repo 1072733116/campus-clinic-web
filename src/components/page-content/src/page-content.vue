@@ -1,74 +1,80 @@
 <template>
-  <div class='page-content card'>
+  <div class="page-content card">
     <!-- 表格头部 -->
-    <div class='table-header'>
-      <h3 class='title'>{{ header.title ?? '数据列表' }}</h3>
-      <div class='operations'>
-        <el-button type='primary' @click='handleCreateOrUpdateDataClick'>{{ header.btnTitle ?? '新建数据' }}</el-button>
+    <div class="table-header">
+      <h3 class="title">{{ header.title ?? '数据列表' }}</h3>
+      <div class="operations">
+        <slot name="btn"></slot>
+        <el-button type="primary" @click="handleCreateOrUpdateDataClick">{{ header.btnTitle ?? '新建数据' }}</el-button>
       </div>
     </div>
-    <div class='table'>
-      <el-table :data='pageList' border style='width: 100%'>
-        <template v-for='item in propList'>
-          <template v-if='item.type === "timer"'>
-            <el-table-column v-bind='item' align='center'></el-table-column>
+    <div class="table">
+      <el-table :data="pageList" border style="width: 100%">
+        <template v-for="(item, index) in propList" :key="index">
+          <template v-if="item.type === 'timer'">
+            <el-table-column v-bind="item" align="center"></el-table-column>
           </template>
-          <template v-if='item.type === "handle"'>
-            <el-table-column v-bind='item' align='center' >
-              <template #default='{row}'>
-                <el-button size='small' icon='Edit' text type='primary'
-                           @click='handleCreateOrUpdateDataClick($event,row)'>
+          <template v-if="item.type === 'handle'">
+            <el-table-column v-bind="item" align="center">
+              <template #default="{ row }">
+                <el-button
+                  size="small"
+                  icon="Edit"
+                  text
+                  type="primary"
+                  @click="handleCreateOrUpdateDataClick($event, row)"
+                >
                   编辑
                 </el-button>
-                <el-popconfirm title='确认删除?' @confirm='handleDeleteConfirmClick($event,row)'>
+                <el-popconfirm title="确认删除?" @confirm="handleDeleteConfirmClick($event, row)">
                   <template #reference>
-                    <el-button type='danger' icon='Delete' text size='small'>删除</el-button>
+                    <el-button type="danger" icon="Delete" text size="small">删除</el-button>
                   </template>
                 </el-popconfirm>
               </template>
             </el-table-column>
           </template>
-          <template v-else-if='item.type === "custom"'>
-            <el-table-column v-bind='item' align='center'>
-              <template #default='scope'>
-                <slot :name='item.slotName' v-bind='scope' :prop='item.prop'></slot>
+          <template v-else-if="item.type === 'custom'">
+            <el-table-column v-bind="item" align="center">
+              <template #default="scope">
+                <slot :name="item.slotName" v-bind="scope" :prop="item.prop"></slot>
               </template>
             </el-table-column>
           </template>
           <template v-else>
-            <el-table-column v-bind='item' align='center'></el-table-column>
+            <el-table-column v-bind="item" align="center"></el-table-column>
           </template>
         </template>
       </el-table>
     </div>
-    <div class='pagination'>
+    <div class="pagination">
       <el-pagination
-        v-model:current-page='currentPage'
-        v-model:page-size='pageSize'
-        :page-sizes='[5, 8, 10]'
-        :background='true'
-        layout='total, sizes, prev, pager, next, jumper'
-        :total='total'
-        @size-change='handleSizeChange'
-        @current-change='handleCurrentChange'
+        v-model:current-page="currentPage"
+        v-model:page-size="pageSize"
+        :page-sizes="[5, 8, 10]"
+        :background="true"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
       />
     </div>
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import useMainStore from '@/store/main';
 
 interface IProps {
   pageName: string;
-  propList: any[],
+  propList: any[];
   header?: {
     title: string;
     btnTitle: string;
-  },
-  childrenTree?: any,
+  };
+  childrenTree?: any;
 }
 
 const props = defineProps<IProps>();
@@ -107,24 +113,27 @@ const handleDeleteConfirmClick = (e, row: any) => {
   });
 };
 
-
 //点击新增或编辑按钮
 const handleCreateOrUpdateDataClick = (event, row?: any) => {
   emit('createOrUpdateEvent', row);
 };
-
 
 defineExpose({
   fetchPageListDataAction
 });
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .table-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
+
+  .operations {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .pagination {
@@ -144,4 +153,3 @@ defineExpose({
   }
 }
 </style>
-

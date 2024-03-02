@@ -1,23 +1,23 @@
 <template>
-  <div class='header-breadcrumb'>
-    <el-breadcrumb :separator-icon='ArrowRight'>
-      <transition-group name='breadcrumb' mode='out-in'>
-        <template v-if='breadcrumbs'>
-          <el-breadcrumb-item :to='{ name:"home"}' v-if='breadcrumbs[0].name !== "首页"'>
-            <div class='el-breadcrumb__inner is-link'>
-              <el-icon class='breadcrumb-icon'>
+  <div class="header-breadcrumb">
+    <el-breadcrumb :separator-icon="ArrowRight">
+      <transition-group name="breadcrumb" mode="out-in">
+        <template v-if="breadcrumbs">
+          <el-breadcrumb-item :to="{ name: 'home' }" v-if="breadcrumbs[0].name !== '首页'">
+            <div class="el-breadcrumb__inner is-link">
+              <el-icon class="breadcrumb-icon">
                 <HomeFilled />
               </el-icon>
-              <span class='breadcrumb-title'>首页</span>
+              <span class="breadcrumb-title">首页</span>
             </div>
           </el-breadcrumb-item>
-          <template v-for='item in breadcrumbs' :key='item.id'>
-            <el-breadcrumb-item :to='item.path'>
-              <div class='el-breadcrumb__inner is-link'>
-                <el-icon class='breadcrumb-icon'>
-                  <component :is='item.icon' />
+          <template v-for="item in breadcrumbs" :key="item.id">
+            <el-breadcrumb-item :to="item.path">
+              <div class="el-breadcrumb__inner is-link">
+                <el-icon class="breadcrumb-icon">
+                  <component :is="item.icon" />
                 </el-icon>
-                <span class='breadcrumb-title'>{{ item.name }}</span>
+                <span class="breadcrumb-title">{{ item.name }}</span>
               </div>
             </el-breadcrumb-item>
           </template>
@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { ArrowRight } from '@element-plus/icons-vue';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
@@ -45,7 +45,7 @@ const breadcrumbs = computed<IBreadcrumb[]>(() => {
 });
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .header-breadcrumb {
   display: flex;
   align-items: center;

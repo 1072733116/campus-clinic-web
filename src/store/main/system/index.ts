@@ -4,14 +4,14 @@
  * @date:2023-02-04 20:38
  */
 import { defineStore } from 'pinia';
-import { getAllResourceRequest, getAlLRoleListRequest,getAllMedicineListRequest } from '@/service/main/system';
+import { getAllResourceRequest, getAlLRoleListRequest, getAllMedicineListRequest } from '@/service/main/system';
 import type { ISystemState } from './type';
 
 const useSystemStore = defineStore('system', {
   state: (): ISystemState => ({
     resourceList: [],
     roleList: [],
-    medicineList:[]
+    medicineList: []
   }),
   actions: {
     async getAllResourceAction() {
@@ -28,7 +28,7 @@ const useSystemStore = defineStore('system', {
       const res = await getAllMedicineListRequest();
       const medicines = res.data;
       this.medicineList = medicines;
-    },
+    }
   }
 });
 

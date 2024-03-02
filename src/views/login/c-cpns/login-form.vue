@@ -1,20 +1,25 @@
 <template>
-  <div class='login-form'>
-    <el-form size='large' ref='formRef' :model='loginUser' :rules='formRules'>
-      <el-form-item prop='account'>
-        <el-input placeholder='工号' v-model='loginUser.account'>
+  <div class="login-form">
+    <el-form size="large" ref="formRef" :model="loginUser" :rules="formRules">
+      <el-form-item prop="account">
+        <el-input placeholder="工号" v-model="loginUser.account">
           <template #prefix>
-            <el-icon class='el-input__icon'>
+            <el-icon class="el-input__icon">
               <user />
             </el-icon>
           </template>
         </el-input>
       </el-form-item>
-      <el-form-item prop='password'>
-        <el-input type='password' placeholder='密码' show-password autocomplete='new-password'
-                  v-model='loginUser.password'>
+      <el-form-item prop="password">
+        <el-input
+          type="password"
+          placeholder="密码"
+          show-password
+          autocomplete="new-password"
+          v-model="loginUser.password"
+        >
           <template #prefix>
-            <el-icon class='el-input__icon'>
+            <el-icon class="el-input__icon">
               <lock />
             </el-icon>
           </template>
@@ -24,7 +29,7 @@
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import useLoginStore from '@/store/login';
@@ -32,6 +37,7 @@ import { localCache } from '@/utils/cache';
 import getTimeState from '@/utils/timeState';
 import { LOGIN_USER_ACCOUNT, LOGIN_USER_PASSWORD } from '@/constant';
 import type { FormInstance, FormRules } from 'element-plus';
+import { ElMessage, ElNotification } from 'element-plus';
 import type { ILoginUser } from '@/types';
 
 const emits = defineEmits(['loadingCancelEvent']);
@@ -58,25 +64,28 @@ const handleLogin = (isKeepPassword: boolean) => {
     if (valid) {
       const account = loginUser.account;
       const password = loginUser.password;
-      loginStore.userLoginAction({ account, password }).then(() => {
-        if (isKeepPassword) {
-          localCache.setCache(LOGIN_USER_ACCOUNT, account);
-          localCache.setCache(LOGIN_USER_PASSWORD, password);
-        } else {
-          localCache.removeCache(LOGIN_USER_ACCOUNT);
-          localCache.removeCache(LOGIN_USER_PASSWORD);
-        }
-        emits('loadingCancelEvent', false);
-        router.push('/main');
-        ElNotification({
-          title: getTimeState(),
-          message: '欢迎登录 医务后台系统',
-          type: 'success',
-          duration:3000
+      loginStore
+        .userLoginAction({ account, password })
+        .then(() => {
+          if (isKeepPassword) {
+            localCache.setCache(LOGIN_USER_ACCOUNT, account);
+            localCache.setCache(LOGIN_USER_PASSWORD, password);
+          } else {
+            localCache.removeCache(LOGIN_USER_ACCOUNT);
+            localCache.removeCache(LOGIN_USER_PASSWORD);
+          }
+          emits('loadingCancelEvent', false);
+          router.push('/main');
+          ElNotification({
+            title: getTimeState(),
+            message: '欢迎登录 医务后台系统',
+            type: 'success',
+            duration: 3000
+          });
+        })
+        .catch(() => {
+          emits('loadingCancelEvent', false);
         });
-      }).catch(() => {
-        emits('loadingCancelEvent', false);
-      });
     } else {
       ElMessage({
         message: '请填写正确的表单信息',
@@ -95,9 +104,6 @@ defineExpose({
   handleLogin,
   handleReset
 });
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

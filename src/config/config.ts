@@ -9,7 +9,4 @@ const HOME_URL: string = '/main/home';
 //登录地址
 const LOGIN_URL: string = '/login';
 
-export {
-  HOME_URL,
-  LOGIN_URL
-};
+export { HOME_URL, LOGIN_URL };

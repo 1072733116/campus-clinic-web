@@ -1,28 +1,23 @@
 <template>
-  <div class='manage'>
-    <page-search :searchConfig='searchConfig'
-                 @searchEvent='handleSearchEvent'
-                 @resetEvent='handleResetEvent'
-    />
-    <page-content v-bind='contentConfig'
-                  ref='pageContentRef'
-                  @createOrUpdateEvent='handleCreateOrUpdateEvent'
-    >
-      <template #gender='{row}'>
+  <div class="manage">
+    <page-search :searchConfig="searchConfig" @searchEvent="handleSearchEvent" @resetEvent="handleResetEvent" />
+    <page-content v-bind="contentConfig" ref="pageContentRef" @createOrUpdateEvent="handleCreateOrUpdateEvent">
+      <template #gender="{ row }">
         {{ row.gender ? '女' : '男' }}
       </template>
-      <template #status='{row}'>
-        <el-tag :type='type(row.status)' :style='{width: "60px"}'>{{ row.status }}</el-tag>
+      <template #status="{ row }">
+        <el-tag :type="type(row.status)" :style="{ width: '60px' }">{{ row.status }}</el-tag>
       </template>
     </page-content>
-    <page-drawer v-bind='drawerConfigData'
-                 ref='pageDrawerRef'
-                 @createOrUpdateDoneEvent='handleCreateOrUpdateDoneEvent'
+    <page-drawer
+      v-bind="drawerConfigData"
+      ref="pageDrawerRef"
+      @createOrUpdateDoneEvent="handleCreateOrUpdateDoneEvent"
     />
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import PageSearch from '@/components/page-search';
 import PageContent from '@/components/page-content';
 import PageDrawer from '@/components/page-drawer';
@@ -53,8 +48,8 @@ const systemStore = useSystemStore();
 systemStore.getAllRoleListAction();
 
 const drawerConfigData = computed(() => {
-  const formItem = drawerConfig.formItemList.find(item => item.prop === 'roleId');
-  formItem!.options = systemStore.roleList.map(role => {
+  const formItem = drawerConfig.formItemList.find((item) => item.prop === 'roleId');
+  formItem!.options = systemStore.roleList.map((role) => {
     return {
       label: role.roleName,
       value: role.id
@@ -64,6 +59,4 @@ const drawerConfigData = computed(() => {
 });
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

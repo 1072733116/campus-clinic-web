@@ -11,5 +11,5 @@ export default {
   name: 'record',
   component: record,
   children: [],
-  meta:{}
+  meta: {}
 };

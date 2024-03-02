@@ -1,12 +1,12 @@
 <template>
-  <div class='main-tabs'>
-    <div class='tab-menu'>
-      <el-tabs type='card' v-model='activeTabItem' @tab-click='handleTabClick' @tab-remove='handleTabRemoveClick'>
-        <template v-for='tab in tabList' :key='tab.path'>
-          <el-tab-pane :name='tab.path' :closable='tab.close'>
+  <div class="main-tabs">
+    <div class="tab-menu">
+      <el-tabs type="card" v-model="activeTabItem" @tab-click="handleTabClick" @tab-remove="handleTabRemoveClick">
+        <template v-for="tab in tabList" :key="tab.path">
+          <el-tab-pane :name="tab.path" :closable="tab.close">
             <template #label>
-              <el-icon class='tab-icon'>
-                <component :is='tab.icon' />
+              <el-icon class="tab-icon">
+                <component :is="tab.icon" />
               </el-icon>
               {{ tab.title }}
             </template>
@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import MoreButton from './c-cpns/more-button.vue';
 import Sortable from 'sortablejs';
 import { onMounted, ref, computed, watch } from 'vue';
@@ -47,20 +47,24 @@ onMounted(() => {
   initTabList();
 });
 
-watch(() => route.path, () => {
-  activeTabItem.value = route.path;
-  if (activeTabItem.value.includes("/main/home/visit")){
-    activeTabItem.value = "/main/home";
-  }
-  const tabItem: ITabItem = {
-    name: route.name as string,
-    path: activeTabItem.value,
-    title: route.meta.title as string,
-    close: !route.meta.isFixed,
-    icon: route.meta.icon as string
-  };
-  mainStore.addTabAction(tabItem);
-}, { immediate: true });
+watch(
+  () => route.path,
+  () => {
+    activeTabItem.value = route.path;
+    if (activeTabItem.value.includes('/main/home/visit')) {
+      activeTabItem.value = '/main/home';
+    }
+    const tabItem: ITabItem = {
+      name: route.name as string,
+      path: activeTabItem.value,
+      title: route.meta.title as string,
+      close: !route.meta.isFixed,
+      icon: route.meta.icon as string
+    };
+    mainStore.addTabAction(tabItem);
+  },
+  { immediate: true }
+);
 
 //标签拖拽排序
 const tabDragSort = () => {
@@ -75,7 +79,7 @@ const tabDragSort = () => {
 
 //初始化需要固定的标签
 const initTabList = () => {
-  flatRouteList.forEach(item => {
+  flatRouteList.forEach((item) => {
     if (item.meta?.isFixed) {
       const tabItem: ITabItem = {
         name: item.name as string,
@@ -99,7 +103,7 @@ const handleTabRemoveClick = (path: string) => {
 };
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .main-tabs {
   background-color: #fff;
 
@@ -141,5 +145,4 @@ const handleTabRemoveClick = (path: string) => {
     }
   }
 }
-
 </style>

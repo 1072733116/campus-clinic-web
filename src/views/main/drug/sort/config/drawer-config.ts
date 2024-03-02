@@ -12,13 +12,13 @@ const DrawerConfig = {
   rules: {
     name: [{ required: true, message: '请输入药品类型' }]
   },
-  formItemList:[
+  formItemList: [
     {
       type: 'input',
       prop: 'name',
       label: '药品类型',
       placeholder: '请输入药品类型'
-    },
+    }
   ]
 };
 

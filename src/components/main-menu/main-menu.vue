@@ -1,19 +1,19 @@
 <template>
-  <div class='main-menu'>
-    <div class='logo'>
-      <img src='@/assets/img/campus-logo.png' alt='广州城市理工学院'>
-      <h2 class='title' v-show='!isCollapse'>后台管理系统</h2>
+  <div class="main-menu">
+    <div class="logo">
+      <img src="@/assets/img/campus-logo.png" alt="广州城市理工学院" />
+      <h2 class="title" v-show="!isCollapse">后台管理系统</h2>
     </div>
     <el-scrollbar>
       <el-menu
-        :router='false'
-        :collapse='isCollapse'
-        :collapse-transition='false'
-        :default-active='defaultActivePath'
-        :unique-opened='true'
-        active-text-color='#fff'
-        background-color='#191a20'
-        text-color='#bdbdc0'
+        :router="false"
+        :collapse="isCollapse"
+        :collapse-transition="false"
+        :default-active="defaultActivePath"
+        :unique-opened="true"
+        active-text-color="#fff"
+        background-color="#191a20"
+        text-color="#bdbdc0"
       >
         <sub-menu />
       </el-menu>
@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import SubMenu from './c-cpns/sub-menu.vue';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
@@ -29,7 +29,7 @@ import useLoginStore from '@/store/login';
 import { maoMenuListToDefaultActivePath } from '@/utils/menu';
 
 interface IProps {
-  isCollapse: boolean
+  isCollapse: boolean;
 }
 
 const props = defineProps<IProps>();
@@ -42,11 +42,9 @@ const defaultActivePath = computed(() => {
   const activeMenuItem = maoMenuListToDefaultActivePath(route.path, userMenuList);
   return activeMenuItem.id + '';
 });
-
 </script>
 
-<style scoped lang='less'>
-
+<style scoped lang="less">
 .main-menu {
   display: flex;
   flex-direction: column;

@@ -35,13 +35,9 @@ class Cache {
   clearCache() {
     this.storage.clear();
   }
-
 }
 
 const localCache = new Cache(CacheType.LOCAL_STORAGE);
 const sessionCache = new Cache(CacheType.SESSION_STORAGE);
 
-export {
-  localCache,
-  sessionCache
-};
+export { localCache, sessionCache };

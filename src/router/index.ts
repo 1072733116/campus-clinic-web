@@ -30,7 +30,6 @@ const routes: RouteRecordRaw[] = [
     path: '/:pathMatch(.*)',
     component: () => import('@/views/not-found/not-found.vue')
   }
-
 ];
 
 const router = createRouter({
@@ -48,7 +47,7 @@ router.beforeEach((to, from) => {
     return firstMenu.url;
   }
   if (to.path === '/login' && token) {
-    return "/main";
+    return '/main';
   }
 });
 
@@ -56,7 +55,7 @@ router.afterEach(() => {
   NProgress.done();
 });
 
-router.onError(error => {
+router.onError((error) => {
   NProgress.done();
   console.warn('路由错误', error.message);
 });

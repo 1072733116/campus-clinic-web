@@ -1,19 +1,19 @@
 <template>
-  <el-menu-item :index='menuItem.id + ""' @click='handleMenuItemClick'>
+  <el-menu-item :index="menuItem.id + ''" @click="handleMenuItemClick">
     <el-icon>
-      <component :is='menuItem.icon' />
+      <component :is="menuItem.icon" />
     </el-icon>
     <span>{{ menuItem.name }}</span>
   </el-menu-item>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { useRouter } from 'vue-router';
-import type{ IUserMenu } from '@/store/login/type';
+import type { IUserMenu } from '@/store/login/type';
 import router from '@/router';
 
 interface IProps {
-  menuItem: IUserMenu
+  menuItem: IUserMenu;
 }
 
 const props = defineProps<IProps>();
@@ -24,6 +24,4 @@ const handleMenuItemClick = () => {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

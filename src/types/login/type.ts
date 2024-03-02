@@ -7,5 +7,3 @@ export interface ILoginUser {
   account: string;
   password: string;
 }
-
-

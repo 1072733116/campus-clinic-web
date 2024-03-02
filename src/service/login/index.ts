@@ -30,4 +30,3 @@ export const getClinicStatusRequest = () => {
     url: '/clinic'
   });
 };
-

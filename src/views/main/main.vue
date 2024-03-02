@@ -1,18 +1,18 @@
 <template>
-  <el-container class='main-container'>
+  <el-container class="main-container">
     <el-aside>
-      <main-menu :isCollapse='isCollapse' :style="{ width: isCollapse ? '60px' : '210px' }"></main-menu>
+      <main-menu :isCollapse="isCollapse" :style="{ width: isCollapse ? '60px' : '210px' }"></main-menu>
     </el-aside>
     <el-container>
-      <el-header height='55px'>
-        <main-header @menuIconClickEvent='handleMenuIconClickEvent'></main-header>
+      <el-header height="55px">
+        <main-header @menuIconClickEvent="handleMenuIconClickEvent"></main-header>
       </el-header>
       <main-content />
     </el-container>
   </el-container>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import MainMenu from '@/components/main-menu';
 import MainHeader from '@/components/main-header';
 import MainContent from '@/components/main-content';
@@ -26,8 +26,7 @@ const handleMenuIconClickEvent = (collapse: boolean) => {
 };
 </script>
 
-<style scoped lang='less'>
-
+<style scoped lang="less">
 .main-container {
   width: 100%;
   height: 100%;

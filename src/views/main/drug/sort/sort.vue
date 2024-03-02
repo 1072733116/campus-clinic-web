@@ -1,21 +1,12 @@
 <template>
-  <div class='sort'>
-    <page-search :searchConfig='searchConfig'
-                 @searchEvent='handleSearchEvent'
-                 @resetEvent='handleResetEvent'
-    />
-    <page-content v-bind='contentConfig'
-                  ref='pageContentRef'
-                  @createOrUpdateEvent='handleCreateOrUpdateEvent'
-    />
-    <page-drawer v-bind='drawerConfig'
-                 ref='pageDrawerRef'
-                 @createOrUpdateDoneEvent='handleCreateOrUpdateDoneEvent'
-    />
+  <div class="sort">
+    <page-search :searchConfig="searchConfig" @searchEvent="handleSearchEvent" @resetEvent="handleResetEvent" />
+    <page-content v-bind="contentConfig" ref="pageContentRef" @createOrUpdateEvent="handleCreateOrUpdateEvent" />
+    <page-drawer v-bind="drawerConfig" ref="pageDrawerRef" @createOrUpdateDoneEvent="handleCreateOrUpdateDoneEvent" />
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import PageSearch from '@/components/page-search';
 import PageContent from '@/components/page-content';
 import PageDrawer from '@/components/page-drawer';
@@ -27,10 +18,6 @@ import usePageDrawer from '@/hooks/usePageDrawer';
 
 const { pageContentRef, handleSearchEvent, handleResetEvent, handleCreateOrUpdateDoneEvent } = usePageContent();
 const { pageDrawerRef, handleCreateOrUpdateEvent } = usePageDrawer();
-
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

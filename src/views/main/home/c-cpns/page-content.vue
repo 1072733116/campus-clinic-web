@@ -1,61 +1,54 @@
 <template>
   <div>
-    <div class='page-content card'>
+    <div class="page-content card">
       <!-- 表格头部 -->
-      <div class='table-header'>
-        <h3 class='title'>预约列表</h3>
+      <div class="table-header">
+        <h3 class="title">预约列表</h3>
       </div>
-      <div class='table'>
-        <el-table :data='appointmentList' border style='width: 100%'>
-          <el-table-column type='index' label='序号' width='60' align='center' />
-          <el-table-column prop='project' label='就诊项目' width='150' align='center' />
-          <el-table-column prop='preNumber' label='学号/工号' width='170' align='center' />
-          <el-table-column prop='preName' label='名字' width='170' align='center' />
-          <el-table-column prop='prePhone' label='联系方式' width='170' align='center' />
-          <el-table-column prop='preGender' label='性别' width='80' align='center'>
-            <template #default='{row}'>
+      <div class="table">
+        <el-table :data="appointmentList" border style="width: 100%">
+          <el-table-column type="index" label="序号" width="60" align="center" />
+          <el-table-column prop="project" label="就诊项目" width="150" align="center" />
+          <el-table-column prop="preNumber" label="学号/工号" width="170" align="center" />
+          <el-table-column prop="preName" label="名字" width="170" align="center" />
+          <el-table-column prop="prePhone" label="联系方式" width="170" align="center" />
+          <el-table-column prop="preGender" label="性别" width="80" align="center">
+            <template #default="{ row }">
               {{ row.preGender === 0 ? '男' : '女' }}
             </template>
           </el-table-column>
-          <el-table-column prop='preDate' label='预约日期' width='170' align='center' />
-          <el-table-column prop='preTime' label='预约时间' width='150' align='center' />
-          <el-table-column prop='preStatus' label='预约状态' width='150' align='center'>
-            <template #default='{row}'>
-              <el-tag effect='dark' :type='tagType(row.preStatus)' size='large'>{{ row.preStatus }}</el-tag>
+          <el-table-column prop="preDate" label="预约日期" width="170" align="center" />
+          <el-table-column prop="preTime" label="预约时间" width="150" align="center" />
+          <el-table-column prop="preStatus" label="预约状态" width="150" align="center">
+            <template #default="{ row }">
+              <el-tag effect="dark" :type="tagType(row.preStatus)" size="large">{{ row.preStatus }}</el-tag>
             </template>
           </el-table-column>
-          <el-table-column label='操作' align='center'>
-            <template #default='{row}'>
-              <el-button icon='Bell' text type='primary'
-                         @click='handleNoticeClick($event,row)'>
-                通知
-              </el-button>
-              <el-button type='danger' icon='EditPen' text
-                         @click='handleVisitClick($event,row)'
-              >
-                就诊
-              </el-button>
+          <el-table-column label="操作" align="center">
+            <template #default="{ row }">
+              <el-button icon="Bell" text type="primary" @click="handleNoticeClick($event, row)"> 通知 </el-button>
+              <el-button type="danger" icon="EditPen" text @click="handleVisitClick($event, row)"> 就诊 </el-button>
             </template>
           </el-table-column>
         </el-table>
       </div>
-      <div class='pagination'>
+      <div class="pagination">
         <el-pagination
-          v-model:current-page='currentPage'
-          v-model:page-size='pageSize'
-          :page-sizes='[5, 8, 10]'
-          :background='true'
-          layout='total, sizes, prev, pager, next, jumper'
-          :total='total'
-          @size-change='handleSizeChange'
-          @current-change='handleCurrentChange'
+          v-model:current-page="currentPage"
+          v-model:page-size="pageSize"
+          :page-sizes="[5, 8, 10]"
+          :background="true"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="total"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
         />
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { ref, computed, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
@@ -83,7 +76,6 @@ const emit = defineEmits(['createEvent', 'updateEvent', 'createOrUpdateEvent', '
 const homeStore = useHomeStore();
 const loginStore = useLoginStore();
 const { total, appointmentList } = storeToRefs(homeStore);
-
 
 const currentPage = ref(1);
 const pageSize = ref(10);
@@ -117,15 +109,16 @@ const handleNoticeClick = (event, row?: any) => {
     type: 'success',
     duration: 1000
   });
-  homeStore.sendMailAction(row).then(() => {
-    ElMessage({
-      message: '通知成功',
-      type: 'success',
-      duration: 1000
-    });
-  }).catch((err) => {
-    // ElMessage.error(err);
-  });
+  homeStore
+    .sendMailAction(row)
+    .then(() => {
+      ElMessage({
+        message: '通知成功',
+        type: 'success',
+        duration: 1000
+      });
+    })
+    .catch((err) => {});
 };
 //点击就诊按钮
 const handleVisitClick = (e, row: any) => {
@@ -137,7 +130,7 @@ defineExpose({
 });
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .table-header {
   display: flex;
   justify-content: space-between;

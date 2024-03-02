@@ -5,12 +5,10 @@
  */
 interface ITableColumn {
   label: string;
-  prop?: string
+  prop?: string;
   width?: string;
   type?: string;
-  slotName?: string
+  slotName?: string;
 }
 
-export type{
-  ITableColumn
-};
+export type { ITableColumn };

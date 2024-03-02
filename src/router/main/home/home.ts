@@ -16,9 +16,9 @@ export default {
   },
   children: [
     {
-      path:"/main/home/visit/:appointmentId",
-      name:"visit",
-      component: () => import("@/views/main/home/c-cpns/page-visit.vue")
+      path: '/main/home/visit/:appointmentId',
+      name: 'visit',
+      component: () => import('@/views/main/home/c-cpns/page-visit.vue')
     }
   ]
 };

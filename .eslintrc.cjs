@@ -10,8 +10,16 @@ module.exports = {
     '@vue/eslint-config-prettier',
     'plugin:prettier/recommended'
   ],
-  rules: {},
+  rules: {
+    '@typescript-eslint/no-unused-vars': 'off',
+    'vue/multi-word-component-names': 'off'
+  },
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  env: {
+    browser: true,
+    es6: true,
+    node: true
   }
 };

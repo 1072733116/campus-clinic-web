@@ -1,12 +1,11 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 3880231 */
-  src: url('iconfont.woff2?t=1675499008883') format('woff2'),
-       url('iconfont.woff?t=1675499008883') format('woff'),
-       url('iconfont.ttf?t=1675499008883') format('truetype');
+  font-family: 'iconfont'; /* Project id 3880231 */
+  src: url('iconfont.woff2?t=1675499008883') format('woff2'), url('iconfont.woff?t=1675499008883') format('woff'),
+    url('iconfont.ttf?t=1675499008883') format('truetype');
 }
 
 .iconfont {
-  font-family: "iconfont" !important;
+  font-family: 'iconfont' !important;
   font-size: 20px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -15,10 +14,9 @@
 }
 
 .icon-fangda:before {
-  content: "\e640";
+  content: '\e640';
 }
 
 .icon-suoxiao:before {
-  content: "\e641";
+  content: '\e641';
 }
-

@@ -5,12 +5,12 @@
  */
 
 interface IMainState {
-  tabMenuList: ITabItem[],
-  total: number
-  pages: number
-  size: number
-  current: number,
-  pageList: any[]
+  tabMenuList: ITabItem[];
+  total: number;
+  pages: number;
+  size: number;
+  current: number;
+  pageList: any[];
 }
 
 interface ITabItem {
@@ -21,8 +21,4 @@ interface ITabItem {
   icon?: string;
 }
 
-
-export type {
-  IMainState,
-  ITabItem
-};
+export type { IMainState, ITabItem };

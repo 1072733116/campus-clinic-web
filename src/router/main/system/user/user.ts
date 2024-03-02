@@ -10,5 +10,5 @@ export default {
   name: 'menu',
   component: user,
   children: [],
-  meta:{}
+  meta: {}
 };

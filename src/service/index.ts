@@ -24,18 +24,14 @@ const request = new Request({
     responseInterceptorFn(res: any) {
       const code = /^4|5/;
       if (res.code === 402) {
-        ElMessageBox.alert(
-          res.msg,
-          '温馨提示',
-          {
-            confirmButtonText: '确认',
-            type: 'warning',
-            center: true,
-            callback: () => {
-              useLogout();
-            }
+        ElMessageBox.alert(res.msg, '温馨提示', {
+          confirmButtonText: '确认',
+          type: 'warning',
+          center: true,
+          callback: () => {
+            useLogout();
           }
-        );
+        });
         return Promise.reject(res.msg);
       }
       if (code.test(res.code + '')) {

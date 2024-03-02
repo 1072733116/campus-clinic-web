@@ -19,12 +19,8 @@ const getAlLRoleListRequest = () => {
 
 const getAllMedicineListRequest = () => {
   return request.get({
-    url:"/medicine"
-  })
-}
-
-export {
-  getAllResourceRequest,
-  getAlLRoleListRequest,
-  getAllMedicineListRequest
+    url: '/medicine'
+  });
 };
+
+export { getAllResourceRequest, getAlLRoleListRequest, getAllMedicineListRequest };

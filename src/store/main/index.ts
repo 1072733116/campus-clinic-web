@@ -28,7 +28,7 @@ const useMainStore = defineStore('main', {
   actions: {
     //main-tabs
     addTabAction(tabItem: ITabItem) {
-      if (this.tabMenuList.every(item => item.path !== tabItem.path)) {
+      if (this.tabMenuList.every((item) => item.path !== tabItem.path)) {
         this.tabMenuList.push(tabItem);
       }
     },
@@ -42,10 +42,10 @@ const useMainStore = defineStore('main', {
           router.push(nextOrPrevTabItem.path);
         });
       }
-      this.tabMenuList = tabList.filter(item => item.path !== path);
+      this.tabMenuList = tabList.filter((item) => item.path !== path);
     },
     closeMultipleTabAction(path?: string) {
-      const newTabList = this.tabMenuList.filter((tabItem: ITabItem) => (tabItem.path === path || !tabItem.close));
+      const newTabList = this.tabMenuList.filter((tabItem: ITabItem) => tabItem.path === path || !tabItem.close);
       this.tabMenuList = newTabList;
     },
     dragSortTabAction(newIndex: number, oldIndex: number) {
@@ -55,10 +55,14 @@ const useMainStore = defineStore('main', {
       this.tabMenuList = tabList;
     },
     //page-content
-    async getPageContentListDataAction(pageName: string, pageParam: IPageParam = {
-      current: 1,
-      size: 10
-    }, queryData?: any) {
+    async getPageContentListDataAction(
+      pageName: string,
+      pageParam: IPageParam = {
+        current: 1,
+        size: 10
+      },
+      queryData?: any
+    ) {
       const result = await getPageContentListDataRequest(pageName, pageParam, queryData);
       this.total = result.data.total;
       this.pages = result.data.pages;

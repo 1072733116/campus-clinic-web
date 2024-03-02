@@ -4,11 +4,11 @@
  * @date:2023-01-29 14:18
  */
 interface ILoginUserInfo {
-  account: string
-  doctorId: number
-  doctorName: string
-  password: string,
-  roleId: number
+  account: string;
+  doctorId: number;
+  doctorName: string;
+  password: string;
+  roleId: number;
 }
 
 interface IUserMenu {
@@ -23,14 +23,11 @@ interface IUserMenu {
 }
 
 interface ILoginState {
-  token: string,
-  clinicStatus: any
-  loginUserInfo: any,
-  userMenuList: IUserMenu[],
-  userPermissions: string[]
+  token: string;
+  clinicStatus: any;
+  loginUserInfo: any;
+  userMenuList: IUserMenu[];
+  userPermissions: string[];
 }
 
-export type {
-  ILoginState,
-  IUserMenu
-};
+export type { ILoginState, IUserMenu };

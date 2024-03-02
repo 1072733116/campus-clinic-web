@@ -1,24 +1,30 @@
 <template>
-  <div class='login-panel'>
-    <div class='header'>
-      <img src='@/assets/img/campus-logo.png' alt='广州城市理工学院'>
-      <h2 class='title'>医务室后台系统</h2>
+  <div class="login-panel">
+    <div class="header">
+      <img src="@/assets/img/campus-logo.png" alt="广州城市理工学院" />
+      <h2 class="title">医务室后台系统</h2>
     </div>
-    <login-form ref='loginformRef' @loadingCancelEvent='handleLoginBtnCancel'></login-form>
-    <div class='controls'>
-      <el-checkbox v-model='isKeepPassword' label='记住密码' size='large' />
+    <login-form ref="loginformRef" @loadingCancelEvent="handleLoginBtnCancel"></login-form>
+    <div class="controls">
+      <el-checkbox v-model="isKeepPassword" label="记住密码" size="large" />
     </div>
-    <div class='login-btn'>
-      <el-button icon='CircleClose' round size='large' @click='handleResetClick'>重置</el-button>
-      <el-button icon='UserFilled' round size='large' type='primary' @click='handleLoginClick'
-                 :loading='loginBtnLoading'>
+    <div class="login-btn">
+      <el-button icon="CircleClose" round size="large" @click="handleResetClick">重置</el-button>
+      <el-button
+        icon="UserFilled"
+        round
+        size="large"
+        type="primary"
+        @click="handleLoginClick"
+        :loading="loginBtnLoading"
+      >
         登录
       </el-button>
     </div>
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import LoginForm from './login-form.vue';
 import { ref, watch, onMounted, onUnmounted } from 'vue';
 import { localCache } from '@/utils/cache';
@@ -30,6 +36,7 @@ const handleLoginBtnCancel = (isLoading: boolean) => {
 };
 const isKeepPassword = ref<boolean>(localCache.getCache(LOGIN_IS_KEEP_PASSWORD) ?? false);
 watch(isKeepPassword, (newValue) => {
+  localCache.removeCache(LOGIN_IS_KEEP_PASSWORD);
   localCache.setCache(LOGIN_IS_KEEP_PASSWORD, newValue);
 });
 const loginformRef = ref<InstanceType<typeof LoginForm>>();
@@ -51,12 +58,11 @@ onMounted(() => {
   };
 });
 onUnmounted(() => {
-  document.removeEventListener("onkeydown",handleLoginClick)
-})
-
+  document.removeEventListener('onkeydown', handleLoginClick);
+});
 </script>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
 .login-panel {
   //box-sizing: border-box;
   width: 330px;

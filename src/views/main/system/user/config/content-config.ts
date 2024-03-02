@@ -38,7 +38,7 @@ const contentConfig = {
       label: '专业班级'
     },
     {
-      type: "custom",
+      type: 'custom',
       prop: 'gender',
       label: '性别',
       slotName: 'gender'

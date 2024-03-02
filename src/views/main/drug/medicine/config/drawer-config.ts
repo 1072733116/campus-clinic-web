@@ -5,9 +5,9 @@
  */
 const drawerConfig = {
   pageName: 'medicine',
-  header:{
-    createTitle:"新增药品",
-    updateTitle:"编辑药品"
+  header: {
+    createTitle: '新增药品',
+    updateTitle: '编辑药品'
   },
   rules: {
     brand: [{ required: true, message: '请输入药品品牌' }],
@@ -60,13 +60,13 @@ const drawerConfig = {
     {
       type: 'input',
       prop: 'stock',
-      label: "药品库存",
+      label: '药品库存',
       placeholder: '请输入药品库存'
     },
     {
       type: 'textarea',
       prop: 'description',
-      label: "药品描述",
+      label: '药品描述',
       placeholder: '请输入药品描述'
     }
   ]

@@ -1,21 +1,16 @@
 <template>
-  <div class='medicine'>
-    <page-search :searchConfig='searchConfigData'
-                 @searchEvent='handleSearchEvent'
-                 @resetEvent='handleResetEvent'
-    />
-    <page-content ref='pageContentRef'
-                  v-bind='contentConfig'
-                  @createOrUpdateEvent='handleCreateOrUpdateEvent'
-    />
-    <page-drawer ref='pageDrawerRef'
-                 v-bind='drawerConfigData'
-                 @createOrUpdateDoneEvent='handleCreateOrUpdateDoneEvent'
+  <div class="medicine">
+    <page-search :searchConfig="searchConfigData" @searchEvent="handleSearchEvent" @resetEvent="handleResetEvent" />
+    <page-content ref="pageContentRef" v-bind="contentConfig" @createOrUpdateEvent="handleCreateOrUpdateEvent" />
+    <page-drawer
+      ref="pageDrawerRef"
+      v-bind="drawerConfigData"
+      @createOrUpdateDoneEvent="handleCreateOrUpdateDoneEvent"
     />
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import PageSearch from '@/components/page-search';
 import PageContent from '@/components/page-content';
 import PageDrawer from '@/components/page-drawer';
@@ -32,8 +27,8 @@ const drugStore = useDrugStore();
 drugStore.getMedicineTypeListDataAction();
 //动态添加药品类型信息
 const searchConfigData = computed(() => {
-  const formItem = searchConfig.formItemList.find(item => item.prop === 'type');
-  formItem!.options = drugStore.medicineTypeList.map(medicineType => {
+  const formItem = searchConfig.formItemList.find((item) => item.prop === 'type');
+  formItem!.options = drugStore.medicineTypeList.map((medicineType) => {
     return {
       label: medicineType.name,
       value: medicineType.id
@@ -42,8 +37,8 @@ const searchConfigData = computed(() => {
   return searchConfig;
 });
 const drawerConfigData = computed(() => {
-  const formItem = drawerConfig.formItemList.find(item => item.prop === 'type');
-  formItem!.options = drugStore.medicineTypeList.map(medicineType => {
+  const formItem = drawerConfig.formItemList.find((item) => item.prop === 'type');
+  formItem!.options = drugStore.medicineTypeList.map((medicineType) => {
     return {
       label: medicineType.name,
       value: medicineType.id
@@ -56,6 +51,4 @@ const { pageContentRef, handleSearchEvent, handleResetEvent, handleCreateOrUpdat
 const { pageDrawerRef, handleCreateOrUpdateEvent } = usePageDrawer();
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

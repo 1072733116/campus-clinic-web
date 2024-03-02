@@ -13,7 +13,7 @@ const pinia = createPinia();
 function registerStore(app: App) {
   app.use(pinia);
   const loginStore = useLoginStore();
-  loginStore.loadLocalCacheAction()
+  loginStore.loadLocalCacheAction();
 }
 
 export default registerStore;

@@ -92,14 +92,14 @@ const mapMenuToPermissions = (userMenuList: IUserMenu[]) => {
 };
 
 export interface IBreadcrumb {
-  id: number
-  name: string
-  path?: string
-  icon?: string
+  id: number;
+  name: string;
+  path?: string;
+  icon?: string;
 }
 
 const mapPathToBreadcrumbs = (path: string, userMenuList: IUserMenu[]): IBreadcrumb[] => {
-  let breadcrumbs: IBreadcrumb[] = [];
+  const breadcrumbs: IBreadcrumb[] = [];
   let isFlag: boolean = true;
 
   function recurseGetBreadcrumbs(menus: IUserMenu[], parentMenuItem?: IUserMenu) {

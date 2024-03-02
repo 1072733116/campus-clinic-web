@@ -8,8 +8,8 @@ interface IFormItem {
   prop: string;
   label: string;
   placeholder?: string;
-  options?: IOptions[]
-  initValue?: any
+  options?: IOptions[];
+  initValue?: any;
 }
 
 interface IOptions {
@@ -17,6 +17,4 @@ interface IOptions {
   value: any;
 }
 
-export type {
-  IFormItem
-};
+export type { IFormItem };

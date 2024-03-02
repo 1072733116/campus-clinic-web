@@ -27,7 +27,6 @@ const usePageContent = () => {
     handleSearchEvent,
     handleResetEvent,
     handleCreateOrUpdateDoneEvent
-  }
-
+  };
 };
 export default usePageContent;

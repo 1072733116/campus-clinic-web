@@ -10,5 +10,5 @@ export default {
   name: 'mange',
   component: manage,
   children: [],
-  meta:{}
+  meta: {}
 };

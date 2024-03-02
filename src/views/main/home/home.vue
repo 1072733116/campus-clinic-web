@@ -1,21 +1,18 @@
 <template>
-  <div class='home' v-if='!visit'>
-    <page-search :searchConfig='searchConfig'
-                 @searchEvent='handleSearchEvent'
-                 @resetEvent='handleResetEvent'
-    />
-    <page-content ref='pageContentRef' @goVisitEvent='handleGoVisitEvent'></page-content>
+  <div class="home" v-if="!visit">
+    <page-search :searchConfig="searchConfig" @searchEvent="handleSearchEvent" @resetEvent="handleResetEvent" />
+    <page-content ref="pageContentRef" @goVisitEvent="handleGoVisitEvent"></page-content>
   </div>
   <div v-else>
-    <router-view v-slot='{ Component, route }'>
-      <transition appear name='fade-transform' mode='out-in'>
-        <component :is='Component' :key='route.path' />
+    <router-view v-slot="{ Component, route }">
+      <transition appear name="fade-transform" mode="out-in">
+        <component :is="Component" :key="route.path" />
       </transition>
     </router-view>
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import PageSearch from '@/components/page-search';
 import PageContent from './c-cpns/page-content.vue';
 import searchConfig from './config/search-config';
@@ -29,7 +26,7 @@ const handleGoVisitEvent = (row: any) => {
   router.push(`/main/home/visit/${row.id}`);
 };
 
-const pageContentRef = ref<InstanceType<typeof PageContent>>()
+const pageContentRef = ref<InstanceType<typeof PageContent>>();
 //点击搜索按钮处理
 const handleSearchEvent = (formData: any) => {
   pageContentRef.value?.fetchAppointmentListAction(formData);
@@ -40,6 +37,4 @@ const handleResetEvent = () => {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -14,16 +14,22 @@ class request {
     this.instance = axios.create(config);
 
     //全局拦截器
-    this.instance.interceptors.request.use((config) => {
-      return config;
-    }, (err) => {
-      return err;
-    });
-    this.instance.interceptors.response.use((res) => {
-      return res.data;
-    }, (err) => {
-      return err;
-    });
+    this.instance.interceptors.request.use(
+      (config) => {
+        return config;
+      },
+      (err) => {
+        return err;
+      }
+    );
+    this.instance.interceptors.response.use(
+      (res) => {
+        return res.data;
+      },
+      (err) => {
+        return err;
+      }
+    );
 
     //实例拦截器
     this.instance.interceptors.request.use(
@@ -44,7 +50,8 @@ class request {
     }
 
     return new Promise<T>((resolve, reject) => {
-      this.instance.request<any, T>(config)
+      this.instance
+        .request<any, T>(config)
         .then((res) => {
           if (config.interceptors?.responseInterceptorFn) {
             res = config.interceptors?.responseInterceptorFn(res);

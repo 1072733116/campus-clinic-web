@@ -1,13 +1,13 @@
 <template>
-  <div class='main-header'>
-    <div class='menu-icon' @click='handleMenuIconClick'>
-      <el-icon size='22px'>
-        <component :is='isCollapse ? "Expand" : "Fold"' />
+  <div class="main-header">
+    <div class="menu-icon" @click="handleMenuIconClick">
+      <el-icon size="22px">
+        <component :is="isCollapse ? 'Expand' : 'Fold'" />
       </el-icon>
     </div>
-    <div class='content'>
+    <div class="content">
       <header-breadcrumb></header-breadcrumb>
-      <div class='status'>
+      <div class="status">
         <clinic-status />
         <info-status />
       </div>
@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import ClinicStatus from '@/components/main-header/c-cpns/clinic-status.vue';
 import InfoStatus from '@/components/main-header/c-cpns/info-status.vue';
 import HeaderInfo from './c-cpns/header-info.vue';
@@ -31,10 +31,9 @@ const handleMenuIconClick = () => {
   isCollapse.value = !isCollapse.value;
   emits('menuIconClickEvent', isCollapse.value);
 };
-
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .main-header {
   display: flex;
   flex: 1;
@@ -55,9 +54,9 @@ const handleMenuIconClick = () => {
   flex: 1;
   padding: 0 20px;
 
-  .status{
-    position:relative;
-    display:flex;
+  .status {
+    position: relative;
+    display: flex;
     align-items: center;
   }
 }
